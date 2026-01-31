@@ -1386,7 +1386,7 @@ class PlayState extends MusicBeatState
 		if (updateRatingStuff != null)
 			updateRatingStuff();
 
-		if (canAccessDebugMenus && chartingMode && controls.DEV_ACCESS)
+		if (chartingMode && controls.DEV_ACCESS)
 			FlxG.switchState(new funkin.editors.charter.Charter(SONG.meta.name, difficulty, variation, false));
 
 		if (Options.camZoomOnBeat && camZooming) {

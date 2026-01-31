@@ -381,17 +381,17 @@ class StrumLine extends FlxTypedGroup<Strum> {
 
 		if (!event.cancelled) {
 			babyArrow.frames = Paths.getFrames(event.sprite);
-			babyArrow.animation.addByPrefix('green', 'arrowUP');
-			babyArrow.animation.addByPrefix('blue', 'arrowDOWN');
-			babyArrow.animation.addByPrefix('purple', 'arrowLEFT');
-			babyArrow.animation.addByPrefix('red', 'arrowRIGHT');
+			babyArrow.animation.addByPrefix('green', 'up');
+			babyArrow.animation.addByPrefix('blue', 'down');
+			babyArrow.animation.addByPrefix('purple', 'left');
+			babyArrow.animation.addByPrefix('red', 'right');
 
 			babyArrow.antialiasing = true;
 			babyArrow.setGraphicSize(Std.int((babyArrow.width * Flags.DEFAULT_NOTE_SCALE) * strumScale));
 
-			babyArrow.animation.addByPrefix('static', 'arrow${event.animPrefix.toUpperCase()}');
-			babyArrow.animation.addByPrefix('pressed', '${event.animPrefix} press', 24, false);
-			babyArrow.animation.addByPrefix('confirm', '${event.animPrefix} confirm', 24, false);
+			babyArrow.animation.addByPrefix('static', 'static ${event.animPrefix.toLowerCase()}');
+			babyArrow.animation.addByPrefix('pressed', 'static ${event.animPrefix.toLowerCase()}', 24, false);
+			babyArrow.animation.addByPrefix('confirm', 'static ${event.animPrefix.toLowerCase()}', 24, false);
 		}
 
 		babyArrow.cpu = cpu;

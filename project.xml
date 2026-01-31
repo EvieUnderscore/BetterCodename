@@ -1,20 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project>
+	<define name="DEVBUILD"/> 
+	
 	<!-- _________________________ Application Settings _________________________ -->
 	<app
-		title="Friday Night Funkin' - Codename Engine" main="funkin.backend.system.Main"
-		file="CodenameEngine" packageName="com.yoshman29.codenameengine"
+		title="Untitled Purgatory Overhaul" main="funkin.backend.system.Main"
+		file="PurgaOverhaul" packageName="com.yoshman29.codenameengine"
 		package="com.yoshman29.codenameengine"
-		version="1.0.1" company="Yoshman29" />
+		version="1.0.1" company="EvScore" />
 
 	<!--
 		CHANGE THE SAVE PATH & NAME FOR YOUR MOD HERE!
 	-->
 	<haxedef name="SAVE_PATH" value="CodenameEngine"/>
-	<haxedef name="SAVE_NAME" value="save-default"/>
+	<haxedef name="SAVE_NAME" value="purgaoverhaul-save-default"/>
 
 	<haxedef name="SAVE_OPTIONS_PATH" value="CodenameEngine"/>
-	<haxedef name="SAVE_OPTIONS_NAME" value="options"/>
+	<haxedef name="SAVE_OPTIONS_NAME" value="purgaoverhaul-options"/>
 
 	<!--Switch Export with Unique ApplicationID and Icon-->
 	<set name="APP_ID" value="0x0100f6c013bbc000" />
@@ -32,7 +34,7 @@
 	<!-- ____________________________ Window Settings ___________________________ -->
 
 	<!--These window settings apply to all targets-->
-	<window width="1280" height="720" background="#000000" hardware="true" vsync="false" />
+	<window width="1280" height="720" background="#250000" hardware="true" vsync="false" />
 
 	<!--HTML5-specific-->
 	<window if="html5" resizable="true" />
@@ -49,19 +51,14 @@
 
 	<!-- _________________________________ Engine Settings _______________________________ -->
 
-	<!-- Comment this out to disable updates !-->
-	<define name="UPDATE_CHECKING" unless="web || hl || neko || debug"/>
-
 	<!-- Comment this out to disable Discord RPC !-->
 	<section if="cpp">
 		<define name="DISCORD_RPC" if="desktop"/>
 	</section>
 
 	<!-- Uncomment this to achive faster compile times, will strip extraneous and commonly unused features. -->
-	<!-- <define name="STRIPPED_COMPILE" unless="debug"/> -->
+	 <define name="STRIPPED_COMPILE" unless="debug"/> 
 
-	<!-- Comment this out to disable modcharting features -->
-	<define name="MODCHARTING_FEATURES" unless="STRIPPED_COMPILE" />
 
 	<!-- Comment this out to disable GitHub API integration !-->
 	<define name="GITHUB_API" unless="web || hl"/>

@@ -29,7 +29,7 @@ final class StrumCreationEvent extends CancellableEvent {
 	/**
 	 * Sprite path, in case you only want to change the sprite.
 	 */
-	public var sprite:String = "game/notes/default";
+	public var sprite:String = "game/notes/default/notes";
 
 	/**
 	 * Cancels the animation that makes the strum "land" in the strumline.
