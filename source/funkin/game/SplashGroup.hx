@@ -119,7 +119,7 @@ class SplashGroup extends FlxTypedGroup<Splash> {
 
 		__splash.strum = strum;
 		__splash.strumID = strum.ID;
-
+		
 		@:privateAccess
 		__splash.scale.x = __splash.scale.y = _scale * strum.strumLine.strumScale;
 		__splash.alpha = _alpha;

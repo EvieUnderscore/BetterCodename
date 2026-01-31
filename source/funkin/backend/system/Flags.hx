@@ -21,7 +21,7 @@ class Flags {
 	@:bypass public static var addonFlags:Map<String, Dynamic> = [];
 
 	public static var CURRENT_API_VERSION:Int = 2;
-
+	
 	// -- Codename's Mod Config --
 	public static var MOD_NAME:String = "";
 	public static var MOD_DESCRIPTION:String = "";
@@ -212,8 +212,8 @@ class Flags {
 	public static var DISABLE_EDITORS:Bool = false;
 	public static var DISABLE_WARNING_SCREEN:Bool = true;
 	public static var DISABLE_TRANSITIONS:Bool = false;
-	public static var DISABLE_LANGUAGES:Bool = false;
-	public static var DISABLE_AUTOUPDATER:Bool = false;
+	public static var DISABLE_LANGUAGES:Bool = true;
+	public static var DISABLE_AUTOUPDATER:Bool = true;
 
 	@:also(funkin.backend.MusicBeatTransition.script)
 	public static var DEFAULT_TRANSITION_SCRIPT:String = "";

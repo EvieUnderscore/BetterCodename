@@ -1983,7 +1983,7 @@ class PlayState extends MusicBeatState
 
 			if (event.note.__strum != null) {
 				if (!event.strumGlowCancelled) event.note.__strum.press(event.note.strumTime);
-				if (event.showSplash) splashHandler.showSplash(event.note.splash, event.note.__strum);
+				if (event.showSplash) splashHandler.showSplash(event.note.splash, event.note.__strum, event.note);
 			}
 		}
 

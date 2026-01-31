@@ -40,12 +40,14 @@ class SplashHandler extends FlxTypedGroup<Splash> {
 	}
 
 	var __grp:SplashGroup;
-	public function showSplash(name:String, strum:Strum) {
+	public function showSplash(name:String, strum:Strum, note:Note) {
 		__grp = getSplashGroup(name);
 
 		var event = EventManager.get(SplashShowEvent).recycle(name, __grp.showOnStrum(strum), strum, __grp);
 		event = PlayState.instance.gameAndCharsEvent("onSplashShown", event);
 
+		event.splash.shader = note.shader;
+		
 		if (!event.cancelled)
 			add(event.splash);
 

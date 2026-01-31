@@ -47,10 +47,30 @@ class Options
 	public static var streamedVocals:Bool = true;
 	public static var quality:Int = 1;
 	public static var allowConfigWarning:Bool = true;
-	#if MODCHARTING_FEATURES
-	public static var modchartingHoldSubdivisions:Int = 4;
-	#end
 
+	// new note shit
+	public static var defaultArrowRGB:Array<Array<FlxColor>> = [
+		[0xFFC24B99, 0xFFFFFFFF, 0xFF3C1F56],
+		[0xFF00FFFF, 0xFFFFFFFF, 0xFF1542B7],
+		[0xFF12FA05, 0xFFFFFFFF, 0xFF0A4447],
+		[0xFFF9393F, 0xFFFFFFFF, 0xFF651038]
+	];
+	
+	public static var quantArrowRGB:Array<Array<FlxColor>> = [
+		[0xFFFF3535, 0xFFFFFFFF, 0xFF651038],
+		[0xFF536BEF, 0xFFFFFFFF, 0xFF0F1C54],
+		[0xFFC24B99, 0xFFFFFFFF, 0xFF3C1F56],
+		[0xFF00e550, 0xFFFFFFFF, 0xFF0a4447],
+		[0xFF606789, 0xFFFFFFFF, 0xFF232a4c],
+		[0xFFff7ad7, 0xFFFFFFFF, 0xFF4d0954],
+		[0xFFffe83d, 0xFFFFFFFF, 0xFF513e00],
+		[0xFFae36e6, 0xFFFFFFFF, 0xFF19246a],
+		[0xFF0febff, 0xFFFFFFFF, 0xFF153e72],
+		[0xFF606789, 0xFFFFFFFF, 0xFF232a4c]
+	];
+	
+	public static var quantNotes:Bool = false;
+	
 	public static var lastLoadedMod:String = null;
 
 	/**

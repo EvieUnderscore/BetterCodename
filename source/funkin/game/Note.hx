@@ -1,5 +1,7 @@
 package funkin.game;
 
+//forever engine and troll engine are my goats frfr
+
 import flixel.util.FlxStringUtil;
 
 import flixel.math.FlxPoint;
@@ -60,6 +62,7 @@ class Note extends FlxSprite
 	 */
 	public var nextSustain:Note;
 
+	public var noteQuant:Int = -1;
 	/**
 	 * The parent of the sustain.
 	 * 
@@ -135,13 +138,9 @@ class Note extends FlxSprite
 	public var rgbShader:RGBShaderReference;
 	public static var globalRgbShaders:Array<RGBPalette> = [];
 
-
 	public function defaultRGB()
 	{
-
-		/*
-		var arr:Array<FlxColor> = ClientPrefs.data.arrowRGB[noteData];
-		if(PlayState.isPixelStage || (PlayState.SONG != null && PlayState.SONG.song.toLowerCase() == 'flip-phone')) arr = ClientPrefs.data.arrowRGBPixel[noteData];
+		var arr:Array<FlxColor> = Options.defaultArrowRGB[noteData];
 
 		if (arr != null && noteData > -1 && noteData <= arr.length)
 		{
@@ -149,17 +148,6 @@ class Note extends FlxSprite
 			rgbShader.g = arr[1];
 			rgbShader.b = arr[2];
 		}
-		else
-		{
-			rgbShader.r = 0xFFFF0000;
-			rgbShader.g = 0xFF00FF00;
-			rgbShader.b = 0xFF0000FF;
-		}
-		*/
-
-		rgbShader.r = 0xFFFF00FF;
-		rgbShader.g = 0xFFFFFF;
-		rgbShader.b = 0xFFFF00AF;
 	}
 
 
@@ -250,6 +238,9 @@ class Note extends FlxSprite
 			animation.play("scroll");
 		}
 
+		if (Options.quantNotes) 
+			makeQuant();
+
 		if (PlayState.instance != null) {
 			PlayState.instance.splashHandler.getSplashGroup(splash);
 			PlayState.instance.gameAndCharsEvent("onPostNoteCreation", event);
@@ -260,9 +251,10 @@ class Note extends FlxSprite
 	{
 		if(globalRgbShaders[noteData] == null)
 		{
-			var newRGB:RGBPalette = new RGBPalette();
-			/*var arr:Array<FlxColor> = (!PlayState.isPixelStage || (PlayState.SONG != null && PlayState.SONG.song.toLowerCase() == 'flip-phone')) ? ClientPrefs.data.arrowRGB[noteData] : ClientPrefs.data.arrowRGBPixel[noteData];
 			
+			var newRGB:RGBPalette = new RGBPalette();
+			var arr:Array<FlxColor> = Options.defaultArrowRGB[noteData];
+
 			if (arr != null && noteData > -1 && noteData <= arr.length)
 			{
 				newRGB.r = arr[0];
@@ -271,11 +263,10 @@ class Note extends FlxSprite
 			}
 			else
 			{
-				*/
-			newRGB.r = 0xFFFF0000;
-			newRGB.g = 0xFF00FF00;
-			newRGB.b = 0xFF0000FF;
-			//}
+				newRGB.r = 0xFFFF0000;
+				newRGB.g = 0xFF00FF00;
+				newRGB.b = 0xFF0000FF;
+			}
 			
 			globalRgbShaders[noteData] = newRGB;
 		}
@@ -389,6 +380,60 @@ class Note extends FlxSprite
 			frame = frames.frames[animation.frameIndex];
 
 		return rect;
+	}
+
+	public function makeQuant() {
+		if (!Options.quantNotes) return;
+	
+		if (noteQuant == -1)
+		{
+			/*
+				I have to credit like 3 different people for these LOL they were a hassle
+				but its gede pixl and scarlett, thank you SO MUCH for baring with me
+			 */
+			final quantArray:Array<Int> = [4, 8, 12, 16, 20, 24, 32, 48, 64, 192]; // different quants
+
+			var curBPM:Float = Conductor.bpm;
+			for (i in 0...Conductor.bpmChangeMap.length) {
+				if (strumTime > Conductor.bpmChangeMap[Conductor.getTimeInChangeIndex(i)].songTime)
+					curBPM = Conductor.bpmChangeMap[Conductor.getTimeInChangeIndex(i)].bpm;
+			}
+
+			final beatTimeSeconds:Float = (60 / curBPM); // beat in seconds
+			final beatTime:Float = beatTimeSeconds * 1000; // beat in milliseconds
+			// assumed 4 beats per measure?
+			final measureTime:Float = beatTime * 4;
+
+			final smallestDeviation:Float = measureTime / quantArray[quantArray.length - 1];
+
+			for (quant in 0...quantArray.length)
+			{
+				// please generate this ahead of time and put into array :)
+				// I dont think I will im scared of those
+				final quantTime = (measureTime / quantArray[quant]);
+				if ((strumTime + smallestDeviation) % quantTime < smallestDeviation * 2)
+				{
+					// here it is, the quant, finally!
+					noteQuant = quant;
+					break;
+				}
+			}
+		}
+		
+		if (isSustainNote)
+			noteQuant = sustainParent.noteQuant;
+
+		var arr:Array<FlxColor> = Options.quantArrowRGB[noteQuant];
+
+		if (arr != null)
+		{
+			rgbShader.r = arr[0];
+			rgbShader.g = arr[1];
+			rgbShader.b = arr[2];
+		}
+
+		return;
+
 	}
 
 	public override function destroy() {

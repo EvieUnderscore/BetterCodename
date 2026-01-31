@@ -10,6 +10,8 @@ class GameplayOptions extends TreeMenuScreen {
 	public function new() {
 		super('optionsTree.gameplay-name', 'optionsTree.gameplay-desc', 'GameplayOptions.');
 
+		add(new Checkbox(getNameID('quantNotes'), getDescID('quantNotes'), 'quantNotes'));
+
 		add(new Checkbox(getNameID('downscroll'), getDescID('downscroll'), 'downscroll'));
 		add(new Checkbox(getNameID('ghostTapping'), getDescID('ghostTapping'), 'ghostTapping'));
 		add(new Checkbox(getNameID('naughtyness'), getDescID('naughtyness'), 'naughtyness'));

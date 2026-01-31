@@ -1,0 +1,29 @@
+{
+	"color": "#9271FD",
+	"customValues": {
+		"previewStart": 0,
+		"ratings": {
+			"nightmare": 8,
+			"erect": 7
+		},
+		"noteStyle": "funkin",
+		"album": "volume3",
+		"previewEnd": 15000,
+		"artist": "Kawai Sprite (feat. Saruky)",
+		"charter": "Jenny Crowe + fabs + Spazkid"
+	},
+	"instSuffix": "-erect",
+	"opponentModeAllowed": false,
+	"difficulties": [
+		"erect",
+		"nightmare"
+	],
+	"icon": "dad",
+	"coopAllowed": false,
+	"stepsPerBeat": 4,
+	"displayName": "Bopeebo Erect",
+	"beatsPerMeasure": 4,
+	"needsVoices": true,
+	"vocalsSuffix": "-erect",
+	"bpm": 123
+}
